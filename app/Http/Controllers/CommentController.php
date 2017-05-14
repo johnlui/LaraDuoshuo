@@ -12,15 +12,15 @@ class CommentController extends Controller
   {
     $uuid = $request->get('uuid');
     if (!$uuid) {
-      return $this->apiResponse(404, '缺少 uuid 字段');
+      return $this->jsonPResponse(404, '缺少 uuid 字段');
     }
 
     $article = Article::where('uuid', $uuid)->first();
     if ($article) {
       $comments = $article->hasManyComments()->get(['nickname', 'email', 'website', 'created_at'])->toArray();
-      return $this->apiResponse(0, 'OK', $comments);
+      return $this->jsonPResponse(0, 'OK', $comments);
     } else {
-      return $this->apiResponse(404, 'uuid 不存在');
+      return $this->jsonPResponse(404, 'uuid 不存在');
     }
   }
 }

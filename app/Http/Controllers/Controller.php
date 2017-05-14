@@ -7,12 +7,14 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
+use Illuminate\Http\Request;
+
 class Controller extends BaseController
 {
   use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-  
-  public function apiResponse($status = 0 , $message = '' , $data='')
+
+  public function jsonPResponse($status = 0 , $message = '' , $data='')
   {
-    return response()->json(['status' => $status, 'message'=>$message ,'values' => $data], 200, [], JSON_UNESCAPED_UNICODE);
+    return '_jqjsp('.json_encode(['status' => $status, 'message'=>$message ,'values' => $data], JSON_UNESCAPED_UNICODE).')';
   }
 }

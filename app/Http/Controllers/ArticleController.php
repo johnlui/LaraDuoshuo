@@ -14,18 +14,18 @@ class ArticleController extends Controller
   {
     $identity = $request->get('identity');
     if (!$identity) {
-      return $this->apiResponse(404, '缺少 identity 字段');
+      return $this->jsonPResponse(404, '缺少 identity 字段');
     }
 
     $identityInDatabase = Article::where('identity', $identity)->get()->toArray();
     if (count($identityInDatabase)) {
-      return $this->apiResponse(0, 'OK', $identityInDatabase[0]['uuid']);
+      return $this->jsonPResponse(0, 'OK', $identityInDatabase[0]['uuid']);
     } else {
       $article = new Article;
       $article->identity = $identity;
       $article->uuid = Uuid::uuid1()->toString();
       $article->save();
-      return $this->apiResponse(0, 'OK', $article->uuid);
+      return $this->jsonPResponse(0, 'OK', $article->uuid);
     }
   }
 }
