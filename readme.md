@@ -11,6 +11,16 @@ LaraDuoshuo
 
 > ### PHP > 5.6.4
 
+# 图
+
+## 原理图
+
+![原理图](https://raw.githubusercontent.com/johnlui/LaraDuoshuo/master/public/pic1.jpg)
+
+## 截图
+
+![截图](https://raw.githubusercontent.com/johnlui/LaraDuoshuo/master/public/pic2.jpg)
+
 # 激活附带的 demo
 
 ## 后端跑起来
