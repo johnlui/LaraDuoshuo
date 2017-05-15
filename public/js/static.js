@@ -9,7 +9,7 @@ var LaraDuoshuo = {
     var seed = Math.round(new Date().getTime()/1000);
     var sign = md5((seed + LaraDuoshuo.APP_KEY).split('').sort().join(''));
     $.jsonp({
-      url: 'http://fuck.io:9000/get-uuid',
+      url: LaraDuoshuo.BaseURL + '/get-uuid',
       data: {
         'identity': identity,
         'seed': seed,
@@ -28,7 +28,7 @@ var LaraDuoshuo = {
     var seed = Math.round(new Date().getTime()/1000);
     var sign = md5((seed + LaraDuoshuo.APP_KEY).split('').sort().join(''));
     $.jsonp({
-      url: 'http://fuck.io:9000/get-comments-by-uuid',
+      url: LaraDuoshuo.BaseURL + '/get-comments-by-uuid',
       data: {
         'uuid': uuid,
         'seed': seed,
@@ -80,7 +80,7 @@ var LaraDuoshuo = {
     var seed = Math.round(new Date().getTime()/1000);
     var sign = md5((seed + LaraDuoshuo.APP_KEY).split('').sort().join(''));
     $.jsonp({
-      url: 'http://fuck.io:9000/add-comments-by-uuid',
+      url: LaraDuoshuo.BaseURL + '/add-comments-by-uuid',
       data: {
         'nickname': nickname,
         'email': email,

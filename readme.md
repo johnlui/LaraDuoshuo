@@ -16,6 +16,9 @@ LaraDuoshuo
 生成 .env 文件和密钥：
 
 ```bash
+git clone git@github.com:johnlui/LaraDuoshuo.git
+cd LaraDuoshuo
+sudo chmod -R 777 storage/ bootstrap/cache/
 cp .env.example .env
 php artisan key:generate
 cd public
@@ -58,6 +61,7 @@ hexo serve
 <script src="//fuck.io:9000/js/static.js"></script>
 <script>
 LaraDuoshuo.APP_KEY = 'base64:nMYxR20sgL9zbiRrMS8GekiVzPSLBId9QAoTepx+nuk=';
+LaraDuoshuo.BaseURL = 'http://fuck.io:9000';
 </script>
 ```
 
@@ -78,6 +82,7 @@ LaraDuoshuo.APP_KEY = 'base64:nMYxR20sgL9zbiRrMS8GekiVzPSLBId9QAoTepx+nuk=';
 <script src="//fuck.io:9000/js/static.js"></script>
 <script>
 LaraDuoshuo.APP_KEY = 'base64:nMYxR20sgL9zbiRrMS8GekiVzPSLBId9QAoTepx+nuk=';
+LaraDuoshuo.BaseURL = 'http://fuck.io:9000';
 </script>
 ```
 
