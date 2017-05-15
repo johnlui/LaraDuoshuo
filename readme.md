@@ -12,6 +12,8 @@ LaraDuoshuo
 ```bash
 cp .env.example .env
 php artisan key:generate
+cd public
+php -S 0.0.0.0:9000
 ```
 
 然后将数据库配置修改为真实值，并将根目录下的 LaraDuoshuo.sql 导入数据库。
