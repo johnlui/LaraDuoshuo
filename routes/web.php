@@ -12,8 +12,11 @@
 */
 
 Route::get('/', function () {
+  echo (new \Identicon\Identicon())->getImageDataUri('wenhanlv@gmail.com');
   return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>403</title></head><body><h3>没有鱼丸，没有粗面</h3></body></html>';
 });
 
-Route::get('get-uuid', 'ArticleController@getUUID');
-Route::get('get-comments-by-uuid', 'CommentController@getCommentsByUUID');
+Route::group(['middleware' => 'jsonp'], function() {
+  Route::get('get-uuid', 'ArticleController@getUUID');
+  Route::get('get-comments-by-uuid', 'CommentController@getCommentsByUUID');
+});

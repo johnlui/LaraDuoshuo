@@ -1,7 +1,7 @@
 # ************************************************************
 # Sequel Pro SQL dump
 # Version 4541
-# Generation Time: 2017-05-14 17:52:51 +0000
+# Generation Time: 2017-05-15 03:50:40 +0000
 # ************************************************************
 
 
@@ -40,6 +40,8 @@ CREATE TABLE `comments` (
   `nickname` varchar(255) NOT NULL DEFAULT '',
   `email` varchar(255) DEFAULT '',
   `website` varchar(255) DEFAULT '',
+  `avatar_uri` text,
+  `content` text,
   `article_id` int(11) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '2001-01-01 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '2001-01-01 00:00:00',

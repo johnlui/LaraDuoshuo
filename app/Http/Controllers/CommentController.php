@@ -17,7 +17,7 @@ class CommentController extends Controller
 
     $article = Article::where('uuid', $uuid)->first();
     if ($article) {
-      $comments = $article->hasManyComments()->get(['nickname', 'email', 'website', 'created_at'])->toArray();
+      $comments = $article->hasManyComments()->get(['nickname', 'email', 'website', 'avatar_uri', 'content', 'created_at'])->toArray();
       return $this->jsonPResponse(0, 'OK', $comments);
     } else {
       return $this->jsonPResponse(404, 'uuid 不存在');
