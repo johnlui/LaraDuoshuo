@@ -7,7 +7,9 @@ LaraDuoshuo
 
 [https://autolayout.club](https://autolayout.club/)
 
+# 环境要求
 
+> ### PHP > 5.6.4
 
 # 激活附带的 demo
 
