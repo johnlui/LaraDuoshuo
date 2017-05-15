@@ -18,6 +18,7 @@ LaraDuoshuo
 ```bash
 git clone git@github.com:johnlui/LaraDuoshuo.git
 cd LaraDuoshuo
+composer update
 sudo chmod -R 777 storage/ bootstrap/cache/
 cp .env.example .env
 php artisan key:generate
