@@ -16,6 +16,9 @@ class ArticleController extends Controller
     if (!$identity) {
       return $this->jsonPResponse(404, '缺少 identity 字段');
     }
+    if (!in_array(parse_url($identity)['host'], \Config::get('app.domain_white_list'))) {
+      return $this->jsonPResponse(404, '域名不在白名单内');
+    }
 
     $identityInDatabase = Article::where('identity', $identity)->get()->toArray();
     if (count($identityInDatabase)) {
