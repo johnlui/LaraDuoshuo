@@ -3,27 +3,38 @@ LaraDuoshuo
 
 多说将于 2017 年 6 月 1 号关闭，此为我即兴写的私有评论系统，初步设计用于 Hexo，下一步准备支持煎蛋那样的单页面多评论需求。
 
-# live demo
+## live demo
 
 [https://autolayout.club](https://autolayout.club/)
 
-# 环境要求
+## 特性
+
+- [ ] 新评论邮件通知，被回复邮件通知
+- [ ] 基于简单 @ 的回复功能
+- [ ] “审核后才显示”开关
+- [ ] 域名白名单
+- [ ] 基于 Akismet 的反垃圾评论
+- [ ] 管理后台：评论审核、编辑
+- [x] 页面自注册
+- [x] 跨域部署，异步加载
+
+## 环境要求
 
 > ### PHP > 5.6.4
 
-# 图
+## 图片们
 
-## 原理图
+### 原理图
 
 ![原理图](https://raw.githubusercontent.com/johnlui/LaraDuoshuo/master/public/pic1.jpg)
 
-## 截图
+### 截图
 
 ![截图](https://raw.githubusercontent.com/johnlui/LaraDuoshuo/master/public/pic2.jpg)
 
-# 激活附带的 demo
+## 如何激活附带的 demo
 
-## 后端跑起来
+### 后端跑起来
 
 生成 .env 文件和密钥：
 
@@ -40,7 +51,7 @@ php -S 0.0.0.0:9000
 
 然后将数据库配置修改为真实值，并将根目录下的 LaraDuoshuo.sql 导入数据库。
 
-## demo 跑起来
+### demo 跑起来
 
 ```bash
 npm install hexo-cli -g
@@ -48,15 +59,15 @@ cd hexo-demo
 hexo serve
 ```
 
-# 用法
+## 如何用于 Hexo
 
-## 后端
+### 后端
 
-部署到自己的服务器，指一个域名过去即可。
+将代码部署到自己的服务器，指一个域名过去即可。
 
-## 前端
+### 前端
 
-### Hexo 默认主题
+#### Hexo 默认主题
 
 在 `themes/landscape/layout/_partial/article.ejs` 第 36 行 `</article>` 的后面添加如下代码：
 
@@ -80,7 +91,7 @@ LaraDuoshuo.BaseURL = 'http://fuck.io:9000';
 
 请将上面的 `LaraDuoshuo.APP_KEY` 的值替换为你服务端 .env 中的 APP_KEY 的值。
 
-### 著名的 NexT 主题
+#### 著名的 NexT 主题
 
 在 `themes/next/layout/_layout.swig` 中 `{% if page.comments %}` 这一行的下面增加：
 
@@ -101,6 +112,28 @@ LaraDuoshuo.BaseURL = 'http://fuck.io:9000';
 
 同样，请将上面的 `LaraDuoshuo.APP_KEY` 的值替换为你服务端 .env 中的 APP_KEY 的值。
 
-### 替换域名
+#### 替换域名
 
 别忘了将上文中的 `fuck.io:9000` 替换为你真实的域名端口。
+
+
+## 如何用于自己的静态页面
+
+代码如下：
+
+```php
+<link rel="stylesheet" href="//fuck.io:9000/css/static.css"> // 默认样式
+<div id="comments"></div> // 评论 DOM 锚点
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//fuck.io:9000/js/static.js"></script> // 此 js 必须在 jQuery 之后引入，否则会被覆盖
+<script> // 注入基础参数
+LaraDuoshuo.APP_KEY = 'base64:nMYxR20sgL9zbiRrMS8GekiVzPSLBId9QAoTepx+nuk=';
+LaraDuoshuo.BaseURL = 'http://fuck.io:9000';
+</script>
+```
+
+
+## 开源协议
+
+本项目遵循 MIT 协议开源，具体请查看根目录下的 LICENSE 文件。
