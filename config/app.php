@@ -5,7 +5,14 @@ return [
     'domain_white_list' => ['fuck.io'], // 接收注册页面申请的域名白名单
     'force_domain_in_white_list' => false, // 是否验证白名单，设为 true 即为启用验证
 
+    // 基于 Akismet 的反垃圾评论
     'AKISMET_API_KEY' => '351caa7c6c70',
+
+    // 是否开启注册，添加了自己用的管理账户之后记得关掉呦
+    'register_enable' => true,
+
+    // 是否先审核后显示
+    'force_show_after_check' => true,
 
     /*
     |--------------------------------------------------------------------------

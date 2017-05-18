@@ -17,7 +17,7 @@ class CommentController extends Controller
 
     $article = Article::where('uuid', $uuid)->first();
     if ($article) {
-      $comments = $article->hasManyComments()->get(['nickname', 'email', 'website', 'avatar_uri', 'content', 'created_at'])->toArray();
+      $comments = $article->hasManyComments()->where('checked', 1)->get(['nickname', 'email', 'website', 'avatar_uri', 'content', 'created_at'])->toArray();
       return $this->jsonPResponse(0, 'OK', $comments);
     } else {
       return $this->jsonPResponse(404, 'uuid 不存在');
@@ -65,6 +65,9 @@ class CommentController extends Controller
     $comment->website = $request->get('website');
     $comment->article_id = $article->id;
     $comment->content = $request->get('content');
+    if ( ! \Config::get('app.force_show_after_check')) {
+      $comment->checked = 1;
+    }
     $comment->save();
 
     return $this->jsonPResponse(0, 'OK');

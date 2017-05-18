@@ -11,10 +11,10 @@ LaraDuoshuo
 
 - [ ] 新评论邮件通知，被回复邮件通知
 - [x] 基于简单 @ 的回复功能
-- [ ] “审核后才显示”开关
+- [x] “审核后才显示”开关
 - [x] 域名白名单
 - [x] 基于 Akismet 的反垃圾评论
-- [ ] 管理后台：评论审核、编辑
+- [x] 管理后台：评论审核、编辑
 - [x] 页面自注册
 - [x] 跨域部署，异步加载
 - [x] 移动兼容
@@ -143,6 +143,16 @@ LaraDuoshuo.BaseURL = 'http://fuck.io:9000';
 ### Akismet 反垃圾评论
 
 到 https://akismet.com 注册一个账户，得到一个“AKISMET API KEY”，配置到 `config/app.php` 内的 `AKISMET_API_KEY` 字段，就 OK 啦！
+
+### 管理后台
+
+访问 `/register` 注册一个账号，成功之后将 `config/app.php` 内的 `register_enable` 字段改为 `false` 关闭注册。
+
+之后就可以使用简洁高效的管理后台啦~
+
+### 审核通过才显示
+
+此配置位于 `config/app.php` 内，名为 `force_show_after_check`，为打开。
 
 ## 开源协议
 

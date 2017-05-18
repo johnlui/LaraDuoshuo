@@ -58,6 +58,9 @@ var LaraDuoshuo = {
           <div style="clear: both; height: 30px;"></div>';
           // console.log(comments[i]);
         }
+        if (commentsHTML === '') {
+          commentsHTML = '<div style="text-align: center; font-size: 18px; padding: 100px;">暂无评论</div>';
+        }
         commentsDOM.html(commentsHTML);
         commentsDOM.append(
           '<div class="submit">\
@@ -78,6 +81,10 @@ var LaraDuoshuo = {
     });
   },
   submit: function(submitDOM) {
+    submitDOM.find('button').blur();
+    submitDOM.find('button').attr('disabled', true);
+    submitDOM.find('button').css({opacity: .5, cursor: 'default'});
+
     var nickname = submitDOM.find('.nickname').val().trim();
     var email    = submitDOM.find('.email').val().trim();
     var website  = submitDOM.find('.website').val().trim();
@@ -125,6 +132,8 @@ var LaraDuoshuo = {
         'sign': sign
       },
       success: function(response) {
+        submitDOM.find('button').attr('disabled', false);
+        submitDOM.find('button').css({opacity: 1, cursor: 'pointer'});
         if (response.status !== 0) {
           alert(response.message);
         } else {
