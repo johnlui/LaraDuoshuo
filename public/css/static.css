@@ -11,13 +11,14 @@
 #comments .avatar {
   width: 10%;
   float: left;
+  padding-top: 7px;
 }
 
 #comments .comment-info {
   width: 85%;
   float: left;
   line-height: 1em;
-  padding-top: 5px;
+  margin-left: 10px;
 }
 #comments .comment-info .nickname {
   font-size: 18px;
@@ -51,6 +52,24 @@
   font-size: 18px;
   line-height: 32px;
 }
+@media only screen and (max-width: 720px) {
+  #comments input, #comments textarea {
+    border: 1px solid #cccccc;
+  }
+  #comments input {
+    width: 27%;
+  }
+}
+@media only screen and (max-width: 400px) {
+  #comments input {
+    margin-right: 1%;
+  }
+}
+@media only screen and (max-width: 350px) {
+  #comments input {
+    margin-right: 0;
+  }
+}
 #comments textarea {
   width: 96%;
   font-size: 18px;
@@ -68,4 +87,5 @@
   background-color: #5cb85c;
   border-color: #4cae4c;
   height: 32px;
+  min-width: 80px;
 }
