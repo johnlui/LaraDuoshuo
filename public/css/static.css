@@ -37,6 +37,13 @@
   line-height: 1.5em;
   width: auto;
 }
+#comments .comment-info a.reply {
+  display: block;
+  float: right;
+  font-size: 14px;
+  color: #999999;
+  cursor: pointer;
+}
 
 #comments input, #comments textarea, #comments button {
   border: none;

@@ -43,6 +43,40 @@ var LaraDuoshuo = {
       }
     });
   },
+  loadComments: function(callback) {
+    var commentsDOM = $('#comments');
+    commentsDOM.html('<div style="font-size: 18px; margin: 10px 20px;">评论加载中...</div>')
+    LaraDuoshuo.getUUID(location.href.replace(location.search, '').replace(location.hash, ''), function(uuid) {
+      LaraDuoshuo.getCommentsByUUID(uuid, function(comments) {
+        var commentsHTML = '';
+        for (var i = comments.length - 1; i >= 0; i--) {
+          commentsHTML +=
+          '<div class="commment">\
+            <div class="avatar"><img src="' + comments[i].avatar_uri + '" alt="' + comments[i].nickname + ' avatar" /></div>\
+            <div class="comment-info"><div class="nickname">' + (comments[i].website ? '<a href="' + comments[i].website + '" target="_blank">' + comments[i].nickname + '</a>' : comments[i].nickname) + '</div><div class="time">' + comments[i].created_at + '</div><div class="content">' + comments[i].content + '</div><a class="reply" onclick="LaraDuoshuo.reply(this); return false;">回复</a></div>\
+          </div>\
+          <div style="clear: both; height: 30px;"></div>';
+          // console.log(comments[i]);
+        }
+        commentsDOM.html(commentsHTML);
+        commentsDOM.append(
+          '<div class="submit">\
+            <input type="text" class="nickname" placeholder="nickname（必填）"/>\
+            <input type="text" class="email" placeholder="email"/>\
+            <input type="text" class="website" placeholder="website"/>\
+            <input type="text" class="uuid" value="' + uuid + '" hidden="hidden"/>\
+            <br />\
+            <textarea name="" id="" cols="30" rows="10" class="content" placeholder="content（必填）"></textarea>\
+            <button onclick="LaraDuoshuo.submit($(this).parent());">提交评论</button>\
+          </div>'
+        );
+        $('#comments .submit').find('input.nickname').val(window.localStorage.getItem('nickname'));
+        $('#comments .submit').find('input.email').val(window.localStorage.getItem('email'));
+        $('#comments .submit').find('input.website').val(window.localStorage.getItem('website'));
+        callback();
+      });
+    });
+  },
   submit: function(submitDOM) {
     var nickname = submitDOM.find('.nickname').val().trim();
     var email    = submitDOM.find('.email').val().trim();
@@ -101,39 +135,11 @@ var LaraDuoshuo = {
       }
     });
   },
-  loadComments: function(callback) {
-    var commentsDOM = $('#comments');
-    commentsDOM.html('<div style="font-size: 18px; margin: 10px 20px;">评论加载中...</div>')
-    LaraDuoshuo.getUUID(location.href.replace(location.search, '').replace(location.hash, ''), function(uuid) {
-      LaraDuoshuo.getCommentsByUUID(uuid, function(comments) {
-        var commentsHTML = '';
-        for (var i = comments.length - 1; i >= 0; i--) {
-          commentsHTML +=
-          '<div class="commment">\
-            <div class="avatar"><img src="' + comments[i].avatar_uri + '" alt="' + comments[i].nickname + ' avatar" /></div>\
-            <div class="comment-info"><div class="nickname">' + (comments[i].website ? '<a href="' + comments[i].website + '" target="_blank">' + comments[i].nickname + '</a>' : comments[i].nickname) + '</div><div class="time">' + comments[i].created_at + '</div><div class="content">' + comments[i].content + '</div></div>\
-          </div>\
-          <div style="clear: both; height: 30px;"></div>';
-          // console.log(comments[i]);
-        }
-        commentsDOM.html(commentsHTML);
-        commentsDOM.append(
-          '<div class="submit">\
-            <input type="text" class="nickname" placeholder="nickname（必填）"/>\
-            <input type="text" class="email" placeholder="email"/>\
-            <input type="text" class="website" placeholder="website"/>\
-            <input type="text" class="uuid" value="' + uuid + '" hidden="hidden"/>\
-            <br />\
-            <textarea name="" id="" cols="30" rows="10" class="content" placeholder="content（必填）"></textarea>\
-            <button onclick="LaraDuoshuo.submit($(this).parent());">提交评论</button>\
-          </div>'
-        );
-        $('#comments .submit').find('input.nickname').val(window.localStorage.getItem('nickname'));
-        $('#comments .submit').find('input.email').val(window.localStorage.getItem('email'));
-        $('#comments .submit').find('input.website').val(window.localStorage.getItem('website'));
-        callback();
-      });
-    });
+  reply: function(a) {
+    var nickname = $(a).parent().find('.nickname').find('a').text();
+    var contentTextarea = $('#comments').find('.submit').find('.content');
+    contentTextarea.val('@' + nickname + ' ');
+    contentTextarea.focus();
   }
 }
 $('#comments').ready(function() {
