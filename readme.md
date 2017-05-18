@@ -13,7 +13,7 @@ LaraDuoshuo
 - [x] 基于简单 @ 的回复功能
 - [ ] “审核后才显示”开关
 - [x] 域名白名单
-- [ ] 基于 Akismet 的反垃圾评论
+- [x] 基于 Akismet 的反垃圾评论
 - [ ] 管理后台：评论审核、编辑
 - [x] 页面自注册
 - [x] 跨域部署，异步加载
@@ -138,7 +138,11 @@ LaraDuoshuo.BaseURL = 'http://fuck.io:9000';
 
 ### 域名白名单
 
-修改 `config/app.php` 内的 `domain_white_list` 字段，将允许使用本系统的域名加入进去即可。
+修改 `config/app.php` 内的 `domain_white_list` 字段，将允许使用本系统的域名加入进去即可。注意那里还有一个开关，默认是不验证的呦。
+
+### Akismet 反垃圾评论
+
+到 https://akismet.com 注册一个账户，得到一个“AKISMET API KEY”，配置到 `config/app.php` 内的 `AKISMET_API_KEY` 字段，就 OK 啦！
 
 ## 开源协议
 

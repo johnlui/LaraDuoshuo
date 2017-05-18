@@ -35,6 +35,24 @@ class CommentController extends Controller
     if ($validator->fails()) {
       return $this->jsonPResponse(403, json_encode($validator->errors(), JSON_UNESCAPED_UNICODE));
     }
+    
+    // Akismet 反垃圾评论
+    $akismetURL = 'http://'.\Config::get('app.AKISMET_API_KEY').'.rest.akismet.com/1.1/comment-check';
+    $akismetData = [
+      'blog' => \Config::get('app.url'),
+      'user_ip' => $request->ip(),
+      'user_agent' => $request->server('HTTP_USER_AGENT'),
+      'referrer' => $request->server('HTTP_REFERER'),
+      'comment_type' => 'comment',
+      'comment_author' => $request->get('nickname'),
+      'comment_author_email' => $request->get('email'),
+      'comment_author_url' => $request->get('website'),
+      'comment_content' => $request->get('content'),
+    ];
+    if ($this->cURL($akismetURL, $akismetData) == 'true') {
+      return $this->jsonPResponse(403, '垃圾评论快走开，你可知道我不常带把伞~带把伞~~');
+    }
+
     $article = Article::where('uuid', $request->get('uuid'))->first();
     if (!$article) {
       return $this->jsonPResponse(404, 'uuid 不存在');

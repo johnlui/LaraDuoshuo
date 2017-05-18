@@ -5,6 +5,8 @@ return [
     'domain_white_list' => ['fuck.io'], // 接收注册页面申请的域名白名单
     'force_domain_in_white_list' => false, // 是否验证白名单，设为 true 即为启用验证
 
+    'AKISMET_API_KEY' => '351caa7c6c70',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
