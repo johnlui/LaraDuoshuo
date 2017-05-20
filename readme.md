@@ -153,7 +153,7 @@ LaraDuoshuo.BaseURL = 'http://fuck.io:9000';
 
 ### 审核通过才显示
 
-此配置位于 `config/app.php` 内，名为 `force_show_after_check`，为打开。
+此配置位于 `config/app.php` 内，名为 `force_show_after_check`，默认为打开状态。
 
 ## 开源协议
 
