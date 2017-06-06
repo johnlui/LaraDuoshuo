@@ -139,6 +139,7 @@ var LaraDuoshuo = {
         } else {
           LaraDuoshuo.loadComments(function() {
             location.href = '#comments';
+            alert('提交成功！请等待审核');
           });
         }
       }
