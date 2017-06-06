@@ -20,6 +20,7 @@ class ArticleController extends Controller
       return $this->jsonPResponse(404, '域名不在白名单内');
     }
 
+    $identity = urldecode($identity);
     $identityInDatabase = Article::where('identity', $identity)->get()->toArray();
     if (count($identityInDatabase)) {
       return $this->jsonPResponse(0, 'OK', $identityInDatabase[0]['uuid']);
